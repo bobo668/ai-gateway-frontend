@@ -6,11 +6,11 @@ interface ProtectedRouteProps {
 }
 
 export default function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { isAuthenticated } = useAuthStore()
-
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />
-  }
+  // TODO: 临时跳过登录验证，正式环境需要恢复
+  // const { isAuthenticated } = useAuthStore()
+  // if (!isAuthenticated) {
+  //   return <Navigate to="/login" replace />
+  // }
 
   return <>{children}</>
 }
