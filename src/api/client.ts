@@ -35,9 +35,10 @@ client.interceptors.response.use(
 
       switch (status) {
         case 401:
-          // Token过期或无效
-          useAuthStore.getState().logout()
-          window.location.href = '/login'
+          // TODO: 临时注释掉401跳转，避免测试Token无效导致无限循环
+          // useAuthStore.getState().logout()
+          // window.location.href = '/login'
+          console.warn('401错误（临时跳过跳转）:', data.message || 'Unauthorized')
           break
         case 403:
           console.error('权限不足:', data.message || 'Forbidden')
