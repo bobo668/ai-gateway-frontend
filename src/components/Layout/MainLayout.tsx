@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import { Layout, Menu, Avatar, Dropdown, Button, theme } from 'antd'
 import {
@@ -15,9 +15,11 @@ import {
   MenuUnfoldOutlined,
   LogoutOutlined,
   UserOutlined,
+  MenuOutlined,
 } from '@ant-design/icons'
 import { useAuthStore } from '@/stores/authStore'
 import { useAppStore } from '@/stores/appStore'
+import MobileSidebar from './MobileSidebar'
 
 const { Header, Sider, Content } = Layout
 
@@ -38,9 +40,21 @@ export default function MainLayout() {
   const { user, logout } = useAuthStore()
   const { sidebarCollapsed, toggleSidebar } = useAppStore()
   const { token } = theme.useToken()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleMenuClick = ({ key }: { key: string }) => {
     navigate(key)
+    setMobileMenuOpen(false)
   }
 
   const handleLogout = () => {
@@ -56,6 +70,9 @@ export default function MainLayout() {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      {isMobile && (
+        <MobileSidebar open={mobileMenuOpen} onClose={() => setMobileMenuOpen(false)} />
+      )}
       <Sider
         trigger={null}
         collapsible
@@ -95,7 +112,7 @@ export default function MainLayout() {
         />
       </Sider>
 
-      <Layout style={{ marginLeft: sidebarCollapsed ? 80 : 200, transition: 'margin-left 0.2s' }}>
+      <Layout style={{ marginLeft: isMobile ? 0 : (sidebarCollapsed ? 80 : 200), transition: 'margin-left 0.2s' }}>
         <Header
           style={{
             padding: '0 24px',
@@ -109,11 +126,19 @@ export default function MainLayout() {
             zIndex: 100,
           }}
         >
-          <Button
-            type="text"
-            icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={toggleSidebar}
-          />
+          {isMobile ? (
+            <Button
+              type="text"
+              icon={<MenuOutlined />}
+              onClick={() => setMobileMenuOpen(true)}
+            />
+          ) : (
+            <Button
+              type="text"
+              icon={sidebarCollapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={toggleSidebar}
+            />
+          )}
           <Dropdown menu={{ items: userMenuItems, onClick: ({ key }) => key === 'logout' && handleLogout() }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer' }}>
               <Avatar icon={<UserOutlined />} style={{ backgroundColor: token.colorPrimary }} />

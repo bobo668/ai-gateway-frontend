@@ -1,0 +1,322 @@
+/* 响应式布局 - 平板适配 (768px - 1024px) */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  /* 侧边栏折叠 */
+  .ant-layout-sider {
+    flex: 0 0 64px !important;
+    max-width: 64px !important;
+    min-width: 64px !important;
+  }
+
+  .ant-layout-sider-collapsed {
+    flex: 0 0 0 !important;
+    max-width: 0 !important;
+    min-width: 0 !important;
+  }
+
+  .ant-layout-sider .ant-layout-sider-children {
+    overflow: visible;
+  }
+
+  /* 主内容区域调整 */
+  .ant-layout-content {
+    padding: 16px !important;
+  }
+
+  /* 卡片网格调整 */
+  .dashboard-cards {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* 表格响应式 */
+  .ant-table-wrapper {
+    overflow-x: auto;
+  }
+
+  .ant-table-cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 表单布局 */
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+
+  /* 统计卡片 */
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 24px;
+  }
+
+  /* 图表容器 */
+  .chart-container {
+    height: 300px;
+  }
+
+  /* 按钮组 */
+  .ant-space {
+    flex-wrap: wrap;
+  }
+}
+
+/* 响应式布局 - 手机适配 (< 768px) */
+@media screen and (max-width: 768px) {
+  /* 隐藏桌面端元素 */
+  .hide-on-mobile {
+    display: none !important;
+  }
+
+  /* 布局 */
+  .ant-layout {
+    min-height: 100vh;
+  }
+
+  /* 侧边栏 - 移动端使用抽屉 */
+  .ant-drawer-overlay {
+    z-index: 1000;
+  }
+
+  /* 主内容区域 */
+  .ant-layout-content {
+    padding: 12px !important;
+    margin: 0 !important;
+  }
+
+  /* 页面标题 */
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 12px;
+  }
+
+  .page-header h2 {
+    font-size: 18px !important;
+  }
+
+  /* 卡片网格 - 单列 */
+  .dashboard-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* 统计卡片 */
+  .stat-card {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  .stat-card .stat-value {
+    font-size: 20px;
+  }
+
+  .stat-card .stat-title {
+    font-size: 12px;
+  }
+
+  /* 表格 */
+  .ant-table {
+    font-size: 12px;
+  }
+
+  .ant-table-thead > tr > th {
+    padding: 8px 4px !important;
+    font-size: 11px;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 8px 4px !important;
+  }
+
+  /* 表格列隐藏策略 */
+  .table-hide-sm {
+    display: none !important;
+  }
+
+  /* 表单 */
+  .ant-form {
+    padding: 12px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+
+  .ant-form-item-label {
+    padding-bottom: 4px;
+  }
+
+  .ant-form-item-label > label {
+    font-size: 13px;
+  }
+
+  /* 输入框 */
+  .ant-input,
+  .ant-select-selector,
+  .ant-picker {
+    min-height: 36px;
+  }
+
+  /* 按钮 */
+  .ant-btn {
+    padding: 4px 12px;
+    font-size: 13px;
+  }
+
+  .ant-btn-sm {
+    padding: 2px 8px;
+    font-size: 12px;
+  }
+
+  /* 模态框 */
+  .ant-modal {
+    margin: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+
+  .ant-modal-content {
+    padding: 16px;
+  }
+
+  /* 抽屉 */
+  .ant-drawer-content {
+    padding: 12px;
+  }
+
+  /* 图表容器 */
+  .chart-container {
+    height: 240px;
+    margin-bottom: 12px;
+  }
+
+  /* 筛选器 */
+  .filter-bar {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filter-bar .ant-space {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  /* 详情面板 */
+  .detail-section {
+    padding: 12px;
+  }
+
+  /* 空状态 */
+  .ant-empty-description {
+    font-size: 13px;
+  }
+
+  /* 分页 */
+  .ant-pagination {
+    font-size: 12px;
+  }
+
+  .ant-pagination-item,
+  .ant-pagination-prev,
+  .ant-pagination-next {
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  /* 标签 */
+  .ant-tag {
+    font-size: 11px;
+    padding: 0 6px;
+  }
+
+  /* 警告提示 */
+  .ant-alert {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* 进度条 */
+  .ant-progress-text {
+    font-size: 11px;
+  }
+
+  /* 下拉菜单 */
+  .ant-dropdown-menu {
+    font-size: 13px;
+  }
+
+  /* 消息提示 */
+  .ant-message {
+    font-size: 13px;
+  }
+}
+
+/* 响应式工具类 */
+.show-on-mobile {
+  display: none !important;
+}
+
+.show-on-desktop {
+  display: inherit !important;
+}
+
+@media screen and (max-width: 768px) {
+  .show-on-mobile {
+    display: block !important;
+  }
+
+  .show-on-desktop {
+    display: none !important;
+  }
+}
+
+/* 触摸友好 */
+@media screen and (max-width: 768px) {
+  /* 增大触摸目标 */
+  .ant-btn,
+  .ant-checkbox-wrapper,
+  .ant-radio-wrapper,
+  .ant-switch {
+    min-height: 36px;
+  }
+
+  /* 移除点击高亮 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* 平滑滚动 */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 防止水平滚动 */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* 平板横屏优化 */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .dashboard-cards {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+
+  .chart-container {
+    height: 280px;
+  }
+}
+
+/* 超大屏幕优化 */
+@media screen and (min-width: 1600px) {
+  .ant-layout-content {
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  .dashboard-cards {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
