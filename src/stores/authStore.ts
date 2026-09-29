@@ -16,19 +16,24 @@ interface AuthState {
   updateToken: (token: string) => void
 }
 
+// 测试用 Token - 临时绕过登录
+const TEST_TOKEN = 'test-api-key-for-development'
+const TEST_USER: User = { id: '1', username: 'admin', role: 'ADMIN' }
+
 export const useAuthStore = create<AuthState>()(
   persist(
     (set) => ({
-      token: null,
-      user: null,
-      isAuthenticated: false,
+      token: TEST_TOKEN, // 临时使用测试 Token
+      user: TEST_USER,
+      isAuthenticated: true, // 临时跳过登录验证
 
       login: (token: string, user: User) => {
         set({ token, user, isAuthenticated: true })
       },
 
       logout: () => {
-        set({ token: null, user: null, isAuthenticated: false })
+        // 临时禁止登出
+        // set({ token: null, user: null, isAuthenticated: false })
       },
 
       updateToken: (token: string) => {
